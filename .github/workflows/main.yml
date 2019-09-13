@@ -4,13 +4,13 @@ jobs:
   one:
     runs-on: ubuntu-16.04
     steps:
-      - name: Test if tag
-        if: contains(github.ref, 'tags')
+      - name: Test if tag with slashes
+        if: contains(github.ref, '/tags/')
         env:
           GH_REF: ${{ github.ref }}
         run: echo "$GH_REF"
-      - name: Test if ref
-        if: contains(github.ref, 'refs')
+      - name: Test if tag escaped
+        if: contains(github.ref, '\/tags\/')
         env:
           GH_REF: ${{ github.ref }}
         run: echo "$GH_REF"
