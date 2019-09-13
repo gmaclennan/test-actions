@@ -4,6 +4,16 @@ jobs:
   one:
     runs-on: ubuntu-16.04
     steps:
+      - name: Test if tag
+        if: contains(github.ref, 'tags')
+        env:
+          GH_REF: ${{ github.ref }}
+        run: echo "$GH_REF"
+      - name: Test if ref
+        if: contains(github.ref, 'refs')
+        env:
+          GH_REF: ${{ github.ref }}
+        run: echo "$GH_REF"
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
@@ -28,4 +38,3 @@ jobs:
         env:
           MATRIX_CONTEXT: ${{ toJson(matrix) }}
         run: echo "$MATRIX_CONTEXT"
-        
